@@ -122,7 +122,7 @@
     <h2>1. 적용 범위</h2>
     <p>
       판매자의 스토어 도메인, 배송 단계 설정, 주문 타임라인, 고객 이메일 등 PackPost가
-      Neon 데이터베이스와 Google Cloud Run 서버에 보관·처리하는 모든 데이터에 적용됩니다.
+      Neon 데이터베이스와 Render 서버에 보관·처리하는 모든 데이터에 적용됩니다.
     </p>
 
     <h2>2. 사고 분류</h2>
@@ -134,7 +134,7 @@
 
     <h2>3. 대응 절차</h2>
     <ol>
-      <li><strong>탐지 (즉시)</strong> — Google Cloud Logging 및 Neon 대시보드의 비정상 접근/오류 알림을 통해 사고를 인지합니다.</li>
+      <li><strong>탐지 (즉시)</strong> — Render 대시보드의 로그/오류 알림 및 Neon 대시보드의 비정상 접근 알림을 통해 사고를 인지합니다.</li>
       <li><strong>격리 및 차단 (24시간 이내)</strong> — 유출/탈취가 의심되는 API 키, 데이터베이스 접속 정보, Shopify 앱 시크릿을 즉시 교체(rotate)하고, 필요 시 문제된 접근 경로를 차단합니다.</li>
       <li><strong>조사</strong> — 로그를 분석해 영향을 받은 스토어와 데이터 범위(어떤 주문, 어떤 필드)를 특정합니다.</li>
       <li><strong>통지 (인지 후 72시간 이내)</strong> — 영향을 받은 스토어 운영자에게 이메일로 사고 개요, 영향 범위, 조치 사항을 안내합니다. 법적으로 요구되는 경우 관련 감독기관에도 통지합니다.</li>
@@ -146,9 +146,9 @@
     <ul>
       <li>모든 통신은 HTTPS(TLS)로 암호화되며, 저장 데이터도 암호화됩니다.</li>
       <li>데이터베이스 접속 정보와 Shopify 앱 시크릿은 환경 변수로만 관리하며 코드에 포함하지 않습니다.</li>
-      <li>운영 계정(Neon, Google Cloud, Shopify Partners)에는 2단계 인증(2FA)을 사용합니다.</li>
+      <li>운영 계정(Neon, Render, Shopify Partners)에는 2단계 인증(2FA)을 사용합니다.</li>
       <li>테스트/개발 환경과 운영(프로덕션) 데이터베이스를 분리해서 사용합니다.</li>
-      <li>Google Cloud Run의 기본 요청 로그를 통해 관리자 화면 및 App Proxy 접근 이력을 확인할 수 있습니다.</li>
+      <li>Render의 기본 요청 로그를 통해 관리자 화면 및 App Proxy 접근 이력을 확인할 수 있습니다.</li>
     </ul>
 
     <h2>5. 신고 방법</h2>
@@ -177,7 +177,7 @@
     <h2>1. Scope</h2>
     <p>
       This policy covers all data PackPost stores and processes on Neon (database) and
-      Google Cloud Run (application server): store domains, configured delivery stages,
+      Render (application server): store domains, configured delivery stages,
       order timelines, and customer emails.
     </p>
 
@@ -192,8 +192,8 @@
 
     <h2>3. Response Process</h2>
     <ol>
-      <li><strong>Detection (immediate)</strong> — incidents are identified via Google Cloud Logging
-        alerts and Neon dashboard anomaly/error notifications.</li>
+      <li><strong>Detection (immediate)</strong> — incidents are identified via Render dashboard
+        log/error alerts and Neon dashboard anomaly notifications.</li>
       <li><strong>Containment (within 24 hours)</strong> — any API key, database credential, or Shopify
         app secret suspected of compromise is rotated immediately, and the affected access path is
         blocked if needed.</li>
@@ -206,17 +206,17 @@
         (Neon point-in-time recovery) if necessary.</li>
       <li><strong>Post-incident review</strong> — the cause and response are documented, and
         preventive measures (tighter access scopes, additional logging, etc.) are applied.</li>
-    </ul>
+    </ol>
 
     <h2>4. Preventive Measures</h2>
     <ul>
       <li>All traffic is encrypted via HTTPS (TLS); stored data is encrypted at rest.</li>
       <li>Database credentials and Shopify app secrets are kept only in environment variables,
         never committed to source code.</li>
-      <li>Two-factor authentication (2FA) is used on operational accounts (Neon, Google Cloud,
+      <li>Two-factor authentication (2FA) is used on operational accounts (Neon, Render,
         Shopify Partners).</li>
       <li>Development/test and production databases are kept separate.</li>
-      <li>Google Cloud Run's default request logging provides a record of access to the admin
+      <li>Render's default request logging provides a record of access to the admin
         screen and App Proxy endpoints.</li>
     </ul>
 
