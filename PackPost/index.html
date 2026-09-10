@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PackPost - Privacy Policy</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #666666;
+    --border: #e5e5e5;
+    --accent: #008060;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --fg: #f2f2f2;
+      --muted: #9a9a9a;
+      --border: #2a2e33;
+      --accent: #3ee6a8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo",
+      "Noto Sans KR", "Malgun Gothic", sans-serif;
+    line-height: 1.7;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+  .lang-switch {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .lang-switch button {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+  }
+  .lang-switch button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 36px;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  p, li {
+    font-size: 0.98rem;
+  }
+  ul {
+    padding-left: 1.3em;
+  }
+  li + li {
+    margin-top: 6px;
+  }
+  a {
+    color: var(--accent);
+  }
+  .contact {
+    margin-top: 48px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .contact p {
+    margin: 4px 0;
+  }
+  footer {
+    margin-top: 56px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  [data-lang] { display: none; }
+  html[data-active="ko"] [data-lang="ko"] { display: block; }
+  html[data-active="en"] [data-lang="en"] { display: block; }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang-switch">
+    <button type="button" id="btn-ko" aria-pressed="true" onclick="setLang('ko')">한국어</button>
+    <button type="button" id="btn-en" aria-pressed="false" onclick="setLang('en')">English</button>
+  </div>
+
+  <div data-lang="ko">
+    <h1>PackPost 개인정보처리방침</h1>
+    <p class="meta">최종 수정일: 2026-09-11</p>
+
+    <p>
+      PackPost(이하 "앱")는 Shopify 스토어에 설치되어, 판매자가 직접 입력하는
+      배송 단계(포장중 · 발송 · 통관 · 도착 등)를 구매자에게 공유하는 서비스입니다.
+      실시간 위치 추적이 아니라 판매자가 수동으로 갱신하는 정보라는 점을 이 문서와
+      앱 화면 전반에 명확히 표시합니다. 이 문서는 앱이 어떤 정보를 수집·이용·보관하는지
+      설명합니다.
+    </p>
+
+    <h2>1. 수집하는 정보</h2>
+    <p>앱은 서비스 제공에 필요한 최소한의 정보만 처리합니다.</p>
+    <ul>
+      <li>스토어 도메인 및 판매자가 설정한 배송 단계 이름/순서</li>
+      <li>주문 ID, 주문번호(예: #1001)</li>
+      <li>주문에 포함된 고객 이메일 (구매자가 자신의 주문 상태를 조회할 때 본인 확인 용도로만 사용)</li>
+      <li>판매자가 직접 입력한 단계 변경 이력(변경 시각, 선택한 단계, 메모, 첨부 이미지 URL)</li>
+    </ul>
+    <p>
+      앱은 소비자의 이름, 배송지 주소, 전화번호, 결제 정보를 저장하지 않습니다.
+    </p>
+
+    <h2>2. 수집 목적</h2>
+    <p>수집한 정보는 아래 목적에만 사용됩니다.</p>
+    <ul>
+      <li>판매자의 관리자 화면에 주문 목록과 현재 배송 단계를 표시</li>
+      <li>구매자가 주문번호와 이메일로 본인 주문의 배송 현황(타임라인)을 조회할 수 있도록 제공</li>
+      <li>판매자가 언제 어떤 상태로 갱신했는지 이력을 보여주어 신뢰를 뒷받침</li>
+    </ul>
+    <p>마케팅, 프로파일링, 제3자 광고 등 다른 목적으로는 사용하지 않습니다.</p>
+
+    <h2>3. 보관 및 삭제</h2>
+    <ul>
+      <li>데이터는 앱이 스토어에 설치되어 있는 동안 보관됩니다.</li>
+      <li>주문 타임라인 데이터는 원칙적으로 최대 24개월간 보관 후 삭제하는 것을 목표로 운영합니다.</li>
+      <li>스토어에서 앱을 삭제하면 Shopify가 전송하는 <code>shop/redact</code> 웹훅을 통해
+        해당 스토어의 모든 데이터(단계 설정, 주문 타임라인, 이력)가 삭제됩니다.</li>
+      <li>소비자가 <code>customers/redact</code> 절차로 삭제를 요청하면 해당 주문에 저장된
+        이메일을 즉시 삭제합니다(주문 단계 이력 자체는 판매자의 운영 기록으로 남되, 개인 식별 정보는 제거됩니다).</li>
+      <li><code>customers/data_request</code> 요청 시 보관 중인 이메일·주문번호 정보를 요청자에게 안내합니다.</li>
+    </ul>
+
+    <h2>4. 제3자 제공</h2>
+    <p>
+      수집한 정보를 제3자에게 판매, 대여, 공유하지 않습니다. 서비스 운영을 위해 아래
+      인프라 제공업체만 이용하며, 이들은 각자의 보안·개인정보 정책에 따라 데이터를 처리합니다.
+    </p>
+    <ul>
+      <li>Neon (PostgreSQL 데이터베이스 호스팅)</li>
+      <li>Google Cloud Run (앱 서버 호스팅)</li>
+      <li>Shopify (스토어/주문 데이터 연동)</li>
+    </ul>
+
+    <h2>5. 보안</h2>
+    <p>
+      앱과 Shopify 간의 모든 통신은 HTTPS(TLS)로 암호화됩니다. 데이터베이스에 저장된
+      데이터는 전송 중·저장 시 모두 암호화됩니다. 스토어프론트 위젯의 조회 요청은
+      Shopify App Proxy 서명 검증을 거치며, 관리자 화면은 Shopify 세션 인증을 통해
+      해당 스토어의 담당자만 접근할 수 있습니다.
+    </p>
+
+    <h2>6. 이용자 권리</h2>
+    <p>
+      스토어 운영자 또는 구매자는 아래 연락처로 보관 중인 정보에 대한 열람, 정정,
+      삭제를 요청할 수 있습니다. 요청 접수 후 합리적인 기간 내에 처리합니다.
+    </p>
+
+    <h2>7. 정책 변경</h2>
+    <p>
+      본 방침이 변경되는 경우 이 페이지를 통해 고지하며, 페이지 상단의 최종 수정일이
+      갱신됩니다.
+    </p>
+
+    <div class="contact">
+      <p><strong>문의처</strong></p>
+      <p>이메일: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+    </div>
+
+    <footer>PackPost &middot; Shopify App</footer>
+  </div>
+
+  <div data-lang="en">
+    <h1>PackPost Privacy Policy</h1>
+    <p class="meta">Last updated: 2026-09-11</p>
+
+    <p>
+      PackPost (the "App") is installed on Shopify stores to let merchants share
+      manually-updated delivery stages (packing, shipped, customs, arrived, etc.) with
+      their buyers. This is not real-time location tracking — every stage shown is
+      entered by the merchant themselves, and this is disclosed clearly throughout the
+      app and the storefront widget. This document explains what information the App
+      collects, uses, and stores.
+    </p>
+
+    <h2>1. Information We Collect</h2>
+    <p>The App processes only the minimum information required to provide its service.</p>
+    <ul>
+      <li>Store domain and the merchant's configured delivery stage names/order</li>
+      <li>Order ID and order name (e.g. #1001)</li>
+      <li>The customer email attached to the order (used only to verify identity when a
+        buyer looks up their own order status)</li>
+      <li>The merchant's manually-entered stage update history (timestamp, selected stage,
+        note, attached image URL)</li>
+    </ul>
+    <p>
+      The App does not store the customer's name, shipping address, phone number, or
+      payment information.
+    </p>
+
+    <h2>2. Purpose of Processing</h2>
+    <p>Collected information is used only for the following purposes:</p>
+    <ul>
+      <li>Displaying the order list and current delivery stage in the merchant's admin screen</li>
+      <li>Letting a buyer look up their own order's delivery timeline using their order
+        number and email</li>
+      <li>Showing when and to what stage the merchant updated the order, to support the
+        transparency the App is built around</li>
+    </ul>
+    <p>Data is never used for marketing, profiling, or third-party advertising.</p>
+
+    <h2>3. Retention and Deletion</h2>
+    <ul>
+      <li>Data is retained while the App remains installed on the store.</li>
+      <li>As a policy target, order timeline data is retained for at most 24 months before deletion.</li>
+      <li>When a store uninstalls the App, all data for that store (stage configuration,
+        order timelines, history) is deleted via the Shopify <code>shop/redact</code> webhook.</li>
+      <li>When a customer requests deletion via <code>customers/redact</code>, the email
+        stored on that order is deleted immediately (the stage history itself may remain
+        as the merchant's operational record, with personal identifiers removed).</li>
+      <li>For a <code>customers/data_request</code>, we disclose the stored email and order
+        name to the requester.</li>
+    </ul>
+
+    <h2>4. Third-Party Sharing</h2>
+    <p>
+      Collected information is never sold, rented, or shared with third parties. We rely
+      only on the following infrastructure providers to operate the service, each subject
+      to their own security and privacy practices.
+    </p>
+    <ul>
+      <li>Neon (PostgreSQL database hosting)</li>
+      <li>Google Cloud Run (application server hosting)</li>
+      <li>Shopify (store/order data integration)</li>
+    </ul>
+
+    <h2>5. Security</h2>
+    <p>
+      All communication between the App and Shopify is encrypted via HTTPS (TLS). Data
+      stored in the database is encrypted both in transit and at rest. Storefront widget
+      requests are verified via Shopify App Proxy signature checks, and the admin screen
+      is gated behind Shopify session authentication so only that store's own staff can
+      access it.
+    </p>
+
+    <h2>6. Your Rights</h2>
+    <p>
+      Store owners and customers may contact us at any time using the details below to
+      request access to, correction of, or deletion of any information held about them.
+      We respond to such requests within a reasonable timeframe.
+    </p>
+
+    <h2>7. Changes to This Policy</h2>
+    <p>
+      If this policy changes, the update will be posted on this page and the "Last
+      updated" date above will be revised accordingly.
+    </p>
+
+    <div class="contact">
+      <p><strong>Contact</strong></p>
+      <p>Email: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+    </div>
+
+    <footer>PackPost &middot; Shopify App</footer>
+  </div>
+</main>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-active', lang);
+    document.documentElement.setAttribute('lang', lang);
+    document.getElementById('btn-ko').setAttribute('aria-pressed', String(lang === 'ko'));
+    document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+    try { localStorage.setItem('packpost_lang', lang); } catch (e) {}
+  }
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('packpost_lang'); } catch (e) {}
+    var browserKo = navigator.language && navigator.language.toLowerCase().indexOf('ko') === 0;
+    setLang(saved || (browserKo ? 'ko' : 'en'));
+  })();
+</script>
+</body>
+</html>

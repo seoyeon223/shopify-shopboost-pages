@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PackPost - Security &amp; Incident Response</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #666666;
+    --border: #e5e5e5;
+    --accent: #008060;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --fg: #f2f2f2;
+      --muted: #9a9a9a;
+      --border: #2a2e33;
+      --accent: #3ee6a8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo",
+      "Noto Sans KR", "Malgun Gothic", sans-serif;
+    line-height: 1.7;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+  .lang-switch {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .lang-switch button {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+  }
+  .lang-switch button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 36px;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  p, li {
+    font-size: 0.98rem;
+  }
+  ul, ol {
+    padding-left: 1.3em;
+  }
+  li + li {
+    margin-top: 6px;
+  }
+  a {
+    color: var(--accent);
+  }
+  .contact {
+    margin-top: 48px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .contact p {
+    margin: 4px 0;
+  }
+  footer {
+    margin-top: 56px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  [data-lang] { display: none; }
+  html[data-active="ko"] [data-lang="ko"] { display: block; }
+  html[data-active="en"] [data-lang="en"] { display: block; }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang-switch">
+    <button type="button" id="btn-ko" aria-pressed="true" onclick="setLang('ko')">한국어</button>
+    <button type="button" id="btn-en" aria-pressed="false" onclick="setLang('en')">English</button>
+  </div>
+
+  <div data-lang="ko">
+    <h1>PackPost 보안 사고 대응 정책</h1>
+    <p class="meta">최종 수정일: 2026-09-11</p>
+
+    <p>
+      이 문서는 PackPost 운영 중 보안 사고(무단 접근, 데이터 유출, 서비스 중단 등)가
+      발생했을 때 어떻게 탐지·대응·통지하는지를 설명합니다.
+    </p>
+
+    <h2>1. 적용 범위</h2>
+    <p>
+      판매자의 스토어 도메인, 배송 단계 설정, 주문 타임라인, 고객 이메일 등 PackPost가
+      Neon 데이터베이스와 Google Cloud Run 서버에 보관·처리하는 모든 데이터에 적용됩니다.
+    </p>
+
+    <h2>2. 사고 분류</h2>
+    <ul>
+      <li><strong>데이터 유출</strong> — 저장된 이메일, 주문 정보 등이 권한 없는 제3자에게 노출된 경우</li>
+      <li><strong>무단 접근</strong> — API 키, 데이터베이스 접속 정보, 관리자 계정 등이 탈취되어 시스템에 비정상 접근이 발생한 경우</li>
+      <li><strong>서비스 중단</strong> — 웹훅 처리 실패, 서버 다운 등으로 배송 현황 업데이트/조회가 불가능한 경우</li>
+    </ul>
+
+    <h2>3. 대응 절차</h2>
+    <ol>
+      <li><strong>탐지 (즉시)</strong> — Google Cloud Logging 및 Neon 대시보드의 비정상 접근/오류 알림을 통해 사고를 인지합니다.</li>
+      <li><strong>격리 및 차단 (24시간 이내)</strong> — 유출/탈취가 의심되는 API 키, 데이터베이스 접속 정보, Shopify 앱 시크릿을 즉시 교체(rotate)하고, 필요 시 문제된 접근 경로를 차단합니다.</li>
+      <li><strong>조사</strong> — 로그를 분석해 영향을 받은 스토어와 데이터 범위(어떤 주문, 어떤 필드)를 특정합니다.</li>
+      <li><strong>통지 (인지 후 72시간 이내)</strong> — 영향을 받은 스토어 운영자에게 이메일로 사고 개요, 영향 범위, 조치 사항을 안내합니다. 법적으로 요구되는 경우 관련 감독기관에도 통지합니다.</li>
+      <li><strong>복구</strong> — 원인이 된 취약점을 수정하고, 필요 시 백업(Neon PITR)에서 데이터를 복구합니다.</li>
+      <li><strong>사후 검토</strong> — 사고 원인과 대응 과정을 기록하고, 재발 방지를 위한 조치(권한 축소, 추가 로깅 등)를 적용합니다.</li>
+    </ol>
+
+    <h2>4. 예방 조치</h2>
+    <ul>
+      <li>모든 통신은 HTTPS(TLS)로 암호화되며, 저장 데이터도 암호화됩니다.</li>
+      <li>데이터베이스 접속 정보와 Shopify 앱 시크릿은 환경 변수로만 관리하며 코드에 포함하지 않습니다.</li>
+      <li>운영 계정(Neon, Google Cloud, Shopify Partners)에는 2단계 인증(2FA)을 사용합니다.</li>
+      <li>테스트/개발 환경과 운영(프로덕션) 데이터베이스를 분리해서 사용합니다.</li>
+      <li>Google Cloud Run의 기본 요청 로그를 통해 관리자 화면 및 App Proxy 접근 이력을 확인할 수 있습니다.</li>
+    </ul>
+
+    <h2>5. 신고 방법</h2>
+    <p>
+      보안 취약점을 발견했거나 사고가 의심되는 경우 아래 이메일로 즉시 알려주세요.
+      가능한 한 빠르게 확인 후 대응하겠습니다.
+    </p>
+
+    <div class="contact">
+      <p><strong>보안 문의 / 사고 신고</strong></p>
+      <p>이메일: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+    </div>
+
+    <footer>PackPost &middot; Shopify App</footer>
+  </div>
+
+  <div data-lang="en">
+    <h1>PackPost Security &amp; Incident Response Policy</h1>
+    <p class="meta">Last updated: 2026-09-11</p>
+
+    <p>
+      This document explains how PackPost detects, responds to, and discloses security
+      incidents (unauthorized access, data breach, service outage) affecting the app.
+    </p>
+
+    <h2>1. Scope</h2>
+    <p>
+      This policy covers all data PackPost stores and processes on Neon (database) and
+      Google Cloud Run (application server): store domains, configured delivery stages,
+      order timelines, and customer emails.
+    </p>
+
+    <h2>2. Incident Classification</h2>
+    <ul>
+      <li><strong>Data breach</strong> — stored emails or order data exposed to an unauthorized party</li>
+      <li><strong>Unauthorized access</strong> — compromised API keys, database credentials, or admin
+        accounts leading to abnormal system access</li>
+      <li><strong>Service outage</strong> — webhook processing failures or server downtime that prevent
+        delivery status updates or lookups</li>
+    </ul>
+
+    <h2>3. Response Process</h2>
+    <ol>
+      <li><strong>Detection (immediate)</strong> — incidents are identified via Google Cloud Logging
+        alerts and Neon dashboard anomaly/error notifications.</li>
+      <li><strong>Containment (within 24 hours)</strong> — any API key, database credential, or Shopify
+        app secret suspected of compromise is rotated immediately, and the affected access path is
+        blocked if needed.</li>
+      <li><strong>Investigation</strong> — logs are reviewed to determine which stores and which data
+        fields were affected.</li>
+      <li><strong>Notification (within 72 hours of discovery)</strong> — affected store owners are
+        emailed a summary of the incident, its scope, and remediation steps. Relevant authorities are
+        notified where legally required.</li>
+      <li><strong>Recovery</strong> — the root cause is patched, and data is restored from backup
+        (Neon point-in-time recovery) if necessary.</li>
+      <li><strong>Post-incident review</strong> — the cause and response are documented, and
+        preventive measures (tighter access scopes, additional logging, etc.) are applied.</li>
+    </ul>
+
+    <h2>4. Preventive Measures</h2>
+    <ul>
+      <li>All traffic is encrypted via HTTPS (TLS); stored data is encrypted at rest.</li>
+      <li>Database credentials and Shopify app secrets are kept only in environment variables,
+        never committed to source code.</li>
+      <li>Two-factor authentication (2FA) is used on operational accounts (Neon, Google Cloud,
+        Shopify Partners).</li>
+      <li>Development/test and production databases are kept separate.</li>
+      <li>Google Cloud Run's default request logging provides a record of access to the admin
+        screen and App Proxy endpoints.</li>
+    </ul>
+
+    <h2>5. Reporting an Issue</h2>
+    <p>
+      If you discover a security vulnerability or suspect an incident, please contact us
+      immediately at the email below. We will review and respond as quickly as possible.
+    </p>
+
+    <div class="contact">
+      <p><strong>Security Contact / Incident Reporting</strong></p>
+      <p>Email: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+    </div>
+
+    <footer>PackPost &middot; Shopify App</footer>
+  </div>
+</main>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-active', lang);
+    document.documentElement.setAttribute('lang', lang);
+    document.getElementById('btn-ko').setAttribute('aria-pressed', String(lang === 'ko'));
+    document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+    try { localStorage.setItem('packpost_lang', lang); } catch (e) {}
+  }
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('packpost_lang'); } catch (e) {}
+    var browserKo = navigator.language && navigator.language.toLowerCase().indexOf('ko') === 0;
+    setLang(saved || (browserKo ? 'ko' : 'en'));
+  })();
+</script>
+</body>
+</html>
