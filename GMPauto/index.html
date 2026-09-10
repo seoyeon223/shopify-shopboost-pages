@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GWP 샘플 자동화 - 개인정보처리방침</title>
+<title>GWP Sample Automation - Privacy Policy</title>
 <style>
   :root {
     color-scheme: light dark;
@@ -35,6 +35,26 @@
     max-width: 720px;
     margin: 0 auto;
     padding: 48px 20px 80px;
+  }
+  .lang-switch {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .lang-switch button {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+  }
+  .lang-switch button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
   }
   h1 {
     font-size: 1.6rem;
@@ -78,85 +98,186 @@
     color: var(--muted);
     font-size: 0.85rem;
   }
+  [data-lang] { display: none; }
+  html[data-active="ko"] [data-lang="ko"] { display: block; }
+  html[data-active="en"] [data-lang="en"] { display: block; }
 </style>
 </head>
 <body>
 <main>
-  <h1>GWP 샘플 자동화 개인정보처리방침</h1>
-  <p class="meta">최종 수정일: 2026-09-10</p>
-
-  <p>
-    GWP 샘플 자동화(이하 "앱")는 Shopify 스토어에 설치되어, 설정된 조건을 만족하는
-    주문에 샘플/사은품을 자동으로 추가하는 서비스입니다. 이 문서는 앱이 어떤 정보를
-    수집·이용·보관하는지 설명합니다.
-  </p>
-
-  <h2>1. 수집하는 정보</h2>
-  <p>앱은 서비스 제공에 필요한 최소한의 정보만 처리합니다.</p>
-  <ul>
-    <li>스토어 도메인 및 앱 설정값 (프로모션 조건, 연결된 샘플 상품, 재고 수량, 배정 방식)</li>
-    <li>주문 처리 중 전달되는 상품 라인 항목 정보 (상품/옵션 ID, 수량, 앱이 부여한 내부 식별 속성)</li>
-    <li>상품 재고 수량 변경 알림 (상품/옵션 단위 재고 수치)</li>
-  </ul>
-  <p>
-    앱은 최종 소비자의 이름, 이메일, 주소, 전화번호 등 개인을 식별할 수 있는 정보를
-    수집·저장·조회하지 않습니다.
-  </p>
-
-  <h2>2. 수집 목적</h2>
-  <p>수집한 정보는 아래 목적에만 사용됩니다.</p>
-  <ul>
-    <li>설정된 조건(주문 금액 이상, 특정 상품 구매 등) 충족 여부 판단</li>
-    <li>여러 샘플 중 랜덤/순환 배정 로직 실행</li>
-    <li>샘플 재고 자동 반영 및 소진 시 프로모션 자동 비활성화</li>
-    <li>스토어 운영자에게 제공하는 대시보드 지표(활성 프로모션 수, GWP 적용 주문 비율) 산출</li>
-  </ul>
-  <p>마케팅, 프로파일링, 제3자 광고 등 다른 목적으로는 사용하지 않습니다.</p>
-
-  <h2>3. 보관 및 삭제</h2>
-  <ul>
-    <li>데이터는 앱이 스토어에 설치되어 있는 동안에만 보관됩니다.</li>
-    <li>스토어에서 앱을 삭제하면 Shopify가 전송하는 <code>app/uninstalled</code> 웹훅을 통해
-      해당 스토어의 세션 정보가 삭제됩니다.</li>
-    <li>스토어 운영자가 데이터 삭제를 요청하면 Shopify의 <code>shop/redact</code> 절차에 따라
-      보관 중인 스토어 관련 정보를 삭제합니다.</li>
-    <li>최종 소비자의 개인 식별 정보를 별도로 저장하지 않으므로,
-      <code>customers/redact</code> 요청 시 삭제 대상이 되는 개인 데이터가 존재하지 않습니다.</li>
-  </ul>
-
-  <h2>4. 제3자 제공</h2>
-  <p>
-    수집한 정보를 제3자에게 판매, 대여, 공유하지 않습니다. 서비스 제공에 필요한
-    Shopify 플랫폼과의 통신(주문/재고 조회, 자동 할인 생성) 외에는 외부로 데이터를
-    전송하지 않습니다.
-  </p>
-
-  <h2>5. 보안</h2>
-  <p>
-    앱과 Shopify 간의 모든 통신은 HTTPS(TLS)로 암호화됩니다. 저장된 데이터는 접근이
-    제한된 서버 환경에서 관리됩니다.
-  </p>
-
-  <h2>6. 이용자 권리</h2>
-  <p>
-    스토어 운영자 또는 최종 소비자는 아래 연락처로 보관 중인 정보에 대한 열람,
-    정정, 삭제를 요청할 수 있습니다. 요청 접수 후 합리적인 기간 내에 처리합니다.
-  </p>
-
-  <h2>7. 정책 변경</h2>
-  <p>
-    본 방침이 변경되는 경우 이 페이지를 통해 고지하며, 페이지 상단의 최종 수정일이
-    갱신됩니다.
-  </p>
-
-  <div class="contact">
-    <p><strong>문의처</strong></p>
-    <p>이메일: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+  <div class="lang-switch">
+    <button type="button" id="btn-ko" aria-pressed="true" onclick="setLang('ko')">한국어</button>
+    <button type="button" id="btn-en" aria-pressed="false" onclick="setLang('en')">English</button>
   </div>
 
-  <footer>
-    GWP 샘플 자동화 (GMPauto) &middot; Shopify App
-  </footer>
+  <div data-lang="ko">
+    <h1>GWP 샘플 자동화 개인정보처리방침</h1>
+    <p class="meta">최종 수정일: 2026-09-10</p>
+
+    <p>
+      GWP 샘플 자동화(이하 "앱")는 Shopify 스토어에 설치되어, 설정된 조건을 만족하는
+      주문에 샘플/사은품을 자동으로 추가하는 서비스입니다. 이 문서는 앱이 어떤 정보를
+      수집·이용·보관하는지 설명합니다.
+    </p>
+
+    <h2>1. 수집하는 정보</h2>
+    <p>앱은 서비스 제공에 필요한 최소한의 정보만 처리합니다.</p>
+    <ul>
+      <li>스토어 도메인 및 앱 설정값 (프로모션 조건, 연결된 샘플 상품, 재고 수량, 배정 방식)</li>
+      <li>주문 처리 중 전달되는 상품 라인 항목 정보 (상품/옵션 ID, 수량, 앱이 부여한 내부 식별 속성)</li>
+      <li>상품 재고 수량 변경 알림 (상품/옵션 단위 재고 수치)</li>
+    </ul>
+    <p>
+      앱은 최종 소비자의 이름, 이메일, 주소, 전화번호 등 개인을 식별할 수 있는 정보를
+      수집·저장·조회하지 않습니다.
+    </p>
+
+    <h2>2. 수집 목적</h2>
+    <p>수집한 정보는 아래 목적에만 사용됩니다.</p>
+    <ul>
+      <li>설정된 조건(주문 금액 이상, 특정 상품 구매 등) 충족 여부 판단</li>
+      <li>여러 샘플 중 랜덤/순환 배정 로직 실행</li>
+      <li>샘플 재고 자동 반영 및 소진 시 프로모션 자동 비활성화</li>
+      <li>스토어 운영자에게 제공하는 대시보드 지표(활성 프로모션 수, GWP 적용 주문 비율) 산출</li>
+    </ul>
+    <p>마케팅, 프로파일링, 제3자 광고 등 다른 목적으로는 사용하지 않습니다.</p>
+
+    <h2>3. 보관 및 삭제</h2>
+    <ul>
+      <li>데이터는 앱이 스토어에 설치되어 있는 동안에만 보관됩니다.</li>
+      <li>스토어에서 앱을 삭제하면 Shopify가 전송하는 <code>app/uninstalled</code> 웹훅을 통해
+        해당 스토어의 세션 정보가 삭제됩니다.</li>
+      <li>스토어 운영자가 데이터 삭제를 요청하면 Shopify의 <code>shop/redact</code> 절차에 따라
+        보관 중인 스토어 관련 정보를 삭제합니다.</li>
+      <li>최종 소비자의 개인 식별 정보를 별도로 저장하지 않으므로,
+        <code>customers/redact</code> 요청 시 삭제 대상이 되는 개인 데이터가 존재하지 않습니다.</li>
+    </ul>
+
+    <h2>4. 제3자 제공</h2>
+    <p>
+      수집한 정보를 제3자에게 판매, 대여, 공유하지 않습니다. 서비스 제공에 필요한
+      Shopify 플랫폼과의 통신(주문/재고 조회, 자동 할인 생성) 외에는 외부로 데이터를
+      전송하지 않습니다.
+    </p>
+
+    <h2>5. 보안</h2>
+    <p>
+      앱과 Shopify 간의 모든 통신은 HTTPS(TLS)로 암호화됩니다. 저장된 데이터는 접근이
+      제한된 서버 환경에서 관리됩니다.
+    </p>
+
+    <h2>6. 이용자 권리</h2>
+    <p>
+      스토어 운영자 또는 최종 소비자는 아래 연락처로 보관 중인 정보에 대한 열람,
+      정정, 삭제를 요청할 수 있습니다. 요청 접수 후 합리적인 기간 내에 처리합니다.
+    </p>
+
+    <h2>7. 정책 변경</h2>
+    <p>
+      본 방침이 변경되는 경우 이 페이지를 통해 고지하며, 페이지 상단의 최종 수정일이
+      갱신됩니다.
+    </p>
+
+    <div class="contact">
+      <p><strong>문의처</strong></p>
+      <p>이메일: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+    </div>
+
+    <footer>GWP 샘플 자동화 (GMPauto) &middot; Shopify App</footer>
+  </div>
+
+  <div data-lang="en">
+    <h1>GWP Sample Automation Privacy Policy</h1>
+    <p class="meta">Last updated: 2026-09-10</p>
+
+    <p>
+      GWP Sample Automation (the "App") is installed on Shopify stores to automatically
+      add free samples/gifts to orders that meet merchant-configured conditions. This
+      document explains what information the App collects, uses, and stores.
+    </p>
+
+    <h2>1. Information We Collect</h2>
+    <p>The App processes only the minimum information required to provide its service.</p>
+    <ul>
+      <li>Store domain and app configuration (promotion conditions, linked sample products, stock levels, assignment mode)</li>
+      <li>Order line item data passed during order processing (product/variant IDs, quantity, internal identifying properties added by the App)</li>
+      <li>Inventory quantity change notifications (product/variant stock counts)</li>
+    </ul>
+    <p>
+      The App does not collect, store, or access personally identifiable information about
+      end customers, such as name, email, address, or phone number.
+    </p>
+
+    <h2>2. Purpose of Processing</h2>
+    <p>Collected information is used only for the following purposes:</p>
+    <ul>
+      <li>Determining whether a configured condition (minimum order amount, specific product purchased, etc.) is met</li>
+      <li>Running the random/rotating assignment logic across multiple gift products</li>
+      <li>Automatically reflecting gift stock levels and deactivating promotions when stock runs out</li>
+      <li>Calculating dashboard metrics shown to the store owner (active promotion count, GWP-applied order ratio)</li>
+    </ul>
+    <p>Data is never used for marketing, profiling, or third-party advertising.</p>
+
+    <h2>3. Retention and Deletion</h2>
+    <ul>
+      <li>Data is retained only while the App remains installed on the store.</li>
+      <li>When a store uninstalls the App, session data for that store is deleted via the
+        Shopify <code>app/uninstalled</code> webhook.</li>
+      <li>When a store owner requests data deletion, stored data for that shop is deleted
+        per Shopify's <code>shop/redact</code> process.</li>
+      <li>Because the App does not separately store personally identifiable end-customer
+        data, there is no personal data to delete in response to a
+        <code>customers/redact</code> request.</li>
+    </ul>
+
+    <h2>4. Third-Party Sharing</h2>
+    <p>
+      Collected information is never sold, rented, or shared with third parties. The App
+      does not transmit data outside of what is required to communicate with the Shopify
+      platform itself (order/inventory lookups, automatic discount creation).
+    </p>
+
+    <h2>5. Security</h2>
+    <p>
+      All communication between the App and Shopify is encrypted via HTTPS (TLS). Stored
+      data is managed in an access-restricted server environment.
+    </p>
+
+    <h2>6. Your Rights</h2>
+    <p>
+      Store owners and end customers may contact us at any time using the details below to
+      request access to, correction of, or deletion of any information held about them. We
+      respond to such requests within a reasonable timeframe.
+    </p>
+
+    <h2>7. Changes to This Policy</h2>
+    <p>
+      If this policy changes, the update will be posted on this page and the "Last
+      updated" date above will be revised accordingly.
+    </p>
+
+    <div class="contact">
+      <p><strong>Contact</strong></p>
+      <p>Email: <a href="mailto:shopboost.dev@gmail.com">shopboost.dev@gmail.com</a></p>
+    </div>
+
+    <footer>GWP Sample Automation (GMPauto) &middot; Shopify App</footer>
+  </div>
 </main>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-active', lang);
+    document.documentElement.setAttribute('lang', lang);
+    document.getElementById('btn-ko').setAttribute('aria-pressed', String(lang === 'ko'));
+    document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+    try { localStorage.setItem('gwp_privacy_lang', lang); } catch (e) {}
+  }
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('gwp_privacy_lang'); } catch (e) {}
+    var browserKo = navigator.language && navigator.language.toLowerCase().indexOf('ko') === 0;
+    setLang(saved || (browserKo ? 'ko' : 'en'));
+  })();
+</script>
 </body>
 </html>
